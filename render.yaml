@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: cafe-lenca-api
+    runtime: node
+    plan: free
+    region: ohio # usa la región más cercana a tu proyecto de Supabase (oregon, ohio, virginia, frankfurt, singapore)
+    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false --filter api... && pnpm --filter @cafe-lenca/shared build && pnpm --filter api build
+    startCommand: pnpm --filter api start:prod
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: TZ
+        value: America/Tegucigalpa
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: BARISTA_LIMITE_DIARIO
+        value: "150"
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: UNSPLASH_ACCESS_KEY
+        sync: false
+      - key: ADMIN_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

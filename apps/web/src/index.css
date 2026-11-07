@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Modo claro: "crema" */
+:root {
+  --bg: #fbf6ee;
+  --surface: #ffffff;
+  --surface-2: #f3eadb;
+  --text: #2a1b12;
+  --muted: #7a6656;
+  --border: #e6d8c3;
+  --primary: #b5532a;
+  --primary-fg: #fff8ef;
+  --accent: #3f6b4a;
+  --gold: #c58b2a;
+}
+
+/* Modo oscuro: "espresso" */
+.dark {
+  --bg: #17100b;
+  --surface: #221812;
+  --surface-2: #2c1f17;
+  --text: #f4e9da;
+  --muted: #b7a28c;
+  --border: #3a2b20;
+  --primary: #e0733f;
+  --primary-fg: #1a0f08;
+  --accent: #7fb58a;
+  --gold: #e2b04a;
+}
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-gold: var(--gold);
+}
+
+@layer base {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  h1, h2, h3 { font-family: var(--font-display); }
+}
+
+/* Textura inspirada en la cerámica lenca (geométrica y sutil) */
+.patron-lenca {
+  background-image:
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 9%, transparent) 25%, transparent 25%),
+    linear-gradient(225deg, color-mix(in srgb, var(--primary) 9%, transparent) 25%, transparent 25%);
+  background-size: 28px 28px;
+}
+
+@keyframes destacar {
+  0%, 60% { box-shadow: 0 0 0 3px var(--primary); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.destacado { animation: destacar 2.5s ease-out; }
+
+.ticket::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  bottom: -7px;
+  height: 7px;
+  background: radial-gradient(circle at 7px 0, var(--surface) 7px, transparent 7.5px) 0 0 / 14px 7px repeat-x;
+}

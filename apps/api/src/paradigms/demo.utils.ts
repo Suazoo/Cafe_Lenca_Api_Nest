@@ -1,0 +1,1 @@
+export const json = (valor: unknown): string => JSON.stringify(valor, null, 2);
