@@ -27,6 +27,7 @@ async function bootstrap() {
   ];
   new Logger('CORS').log(`Orígenes permitidos: ${origenes.join(', ')}`);
   app.enableCors({ origin: origenes });
+  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   const config = new DocumentBuilder()
     .setTitle('Café Lenca API')

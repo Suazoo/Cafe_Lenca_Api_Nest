@@ -25,7 +25,7 @@ export const slug = (texto: string): string =>
     .replace(/^_+|_+$/g, '');
 
 const atomo = (texto: string): string => `'${slug(texto)}'`;
-const decimal = (n: number): string => n.toFixed(2);
+const decimal = (n: number): string => Number(n).toFixed(2);
 
 export const construirHechos = (d: DatosCliente): string =>
   [
